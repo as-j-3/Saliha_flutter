@@ -38,28 +38,27 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 colors: [Color(0xff8E2DE2), Color(0xff4A6CF7)],
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("قائمة المنتجات",
-                    style:
-                    TextStyle(color: Colors.white, fontSize: 22)),
-                Text("${widget.products.length} منتج",
-                    style: const TextStyle(color: Colors.white70)),
+                IconButton(onPressed: () {
+                  Navigator.pop(context);
+                }, icon: Icon(Icons.arrow_back,color: Colors.white,)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Text("قائمة المنتجات",
+                        style:
+                        TextStyle(color: Colors.white, fontSize: 22)),
+                    Text("${widget.products.length} منتج",
+                        style: const TextStyle(color: Colors.white70)),
+                  ],
+                ),
+
               ],
             ),
           ),
-          if (products.isNotEmpty)
-            TextButton.icon(
-                onPressed: ()  async
-                {
-                  final products = await ExcelReader.readExcel();
 
-                  if (products.isEmpty) return;
-                },
-                icon: const Icon(Icons.file_open, size: 18),
-                label: const Text(" اضغط هنا لإعادة اختيار الملف"),
-              ),
           Expanded(
             child: ListView.builder(
               itemCount: widget.products.length,
